@@ -1,0 +1,149 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f1f1f1;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#td {
+    height: auto;
+    background-color: #333333;
+}
+
+#search {
+    height: auto;
+    background-color: #ffffff;
+}
+
+#nav {
+    margin-top: 20px;
+    width: 80%;
+    height: auto;
+    background-color: #333333;
+    border-radius: 5px;
+}
+
+#banner {
+    margin-top: 20px;
+    width: 80%;
+    height: auto;
+}
+
+#content {
+    color: black;
+    margin-top: 20px;
+    width: 80%;
+    height: auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding-bottom: 50px;
+    padding-top: 10px;
+}
+#footer {
+    margin-top: 20px;
+    width: 80%;
+    height: auto;
+    background-color: #333333;
+    border-radius: 10px;
+    line-height: 3px;
+}
+
+#pName {
+    margin-top: -8px;
+    letter-spacing: 2.5px;
+    color: #888888;
+}
+#aa{
+    text-decoration: none;
+    color: #ffffff;
+}
+#aa:hover {
+    color: #888888;
+}
+#cart {
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 15px;
+    width: 100%;
+    height: 40px;
+}
+
+#cart:hover {
+    background-color: #f1f1f1;
+}
+#login {
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 15px;
+    width: 100%;
+    height: 40px;
+}
+
+#login:hover {
+    background-color: #f1f1f1;
+}
+#txt {
+    margin-top: 5px;
+    padding: 2px;
+}
+
+#imgtele {
+    width: 110px;
+    height: 33px;
+    border-radius: 20px;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+
+#imgtele:hover {
+    border: 2px solid red;
+    transition: all 0.1s ease-out;
+}
+
+#dtnb {
+    background-color: #333333;
+    color: #ffffff;
+    margin-top: 5px;
+    display: inline-block;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+#ff {
+    font-size: 11px;
+}
+#hinh {
+    margin-top: 50px;
+}
+
+#hinh:hover {
+    margin-top: 20px;
+    transition: all 0.5s ease-in-out;
+}
+
+#giacu{
+    color: #dad2d2;
+    text-decoration: line-through;
+}
+
+#tendt {
+    text-decoration: none;
+}
+#imgbanner{
+    border-radius: 5px;
+}
+#bgdn
+{
+    padding:20px;
+}
+#slgh{
+    display: inline-block;
+    border-radius: 50%;
+    background-color: red;
+}

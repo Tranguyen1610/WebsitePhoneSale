@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản trị trang web</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+    #QT{
+       background-color:#333333; 
+    }
+    #main{
+        border-radius: 10px;
+        background-color: #ffffff;
+        width: 90%;
+        height: auto;
+    }
+    #btnsua{
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    </style>
+    <script>
+        function ktso(gt)
+        {
+            var regs=/^\d+$/;
+            return regs.test(gt);
+        }
+        var dts=JSON.parse(localStorage.getItem('dtsua'));
+        var ds=JSON.parse(localStorage.getItem('dsdt'));
+        $(document).ready(function(){
+            $("#btnback").click(function(){
+                window.location.href="../html/admin.html";
+            })
+            $("#tendt").html(ds[dts].ten);
+            if(ds[dts].chon==true)
+                $("#ht").prop("checked",true);
+            if(ds[dts].nb==true)
+                $("#nb").prop("checked",true);
+            $("#txtgia").val(ds[dts].gia);
+            $("#txtgiacu").val(ds[dts].giacu);
+            $("#txtgia").blur(function(){
+                var gt=$("#txtgia").val();
+                if(ktso(gt))
+                {
+                    $("#erg").html("*");
+                    return true;
+                }
+                {
+                    $("#erg").html("Không phải số");
+                    return false;
+                }
+
+            })
+            $("#txtgiacu").blur(function(){
+                var gt=$("#txtgiacu").val();
+                if(ktso(gt))
+                {
+                    $("#ergc").html("*");
+                    return true;
+                }
+                {
+                    $("#ergc").html("Không phải số");
+                    return false;
+                }
+            })
+            $("#btnluusua").click(function(){
+                var gia=$("#txtgia").val();
+                var giacu=$("#txtgiacu").val();
+                if(ktso(gia)&&ktso(giacu))
+                {
+                    if($("#ht").prop("checked")==true) 
+                        ds[dts].chon=true;
+                    else
+                        ds[dts].chon=false;
+                    if($("#nb").prop("checked")==true) 
+                        ds[dts].nb=true;
+                    else
+                        ds[dts].nb=false;
+                    ds[dts].gia=gia;
+                    ds[dts].giacu=giacu;
+                    localStorage.setItem('dsdt',JSON.stringify(ds));
+                    alert("Đã sửa thông tin thành công");
+                    window.location.href="../html/admin.html";
+                }
+            })
+        })
+
+    </script>
+</head>
+<body>
+    <div class="container-fluid text-center" id="QT">
+        <h3 style="padding: 10px;">QUẢN TRỊ TRANG WEB</h3>
+    </div>
+    <div class="container-fluid" id="main">
+        <h3 id="dtnb">Sửa thông tin</h3>
+        <br>
+        <button type="button" class="btn btn-dark col-6 mb-3" id="btnback" style="width: 40px;">&lt;</button>
+        <div class="row">
+            <form action="" style="color: black; width:auto;" >
+                <h5 id="tendt" style="text-align: center;"></h5>
+                <label for="" class="form-check-label">
+                    Hiển thị<input type="checkbox" name="" id="ht"class="form-check-input ml-5">
+                </label>
+                <br>
+                <label for="" class="form-check-label">
+                    Thuộc sản phẩm nổi bật<input type="checkbox" name="" id="nb" class="form-check-input ml-3" >
+                </label>
+                <div class="form-group">
+                    <label for="">Giá:</label>
+                    <input type="text" name="" id="txtgia" class="form-control" style="width: 100%; ">
+                    <span class="text-danger" id="erg"></span>
+                </div>
+                <div class="form-group">
+                    <label for="">Giá cũ:</label>
+                    <input type="text" name="" id="txtgiacu" class="form-control" style="width: 100%;">
+                    <span class="text-danger" id="ergc"></span>
+                </div>
+            </form>
+        </div>
+        <div class="row text-center">
+            <span class="col-3"></span>
+            <button type="button" class="btn btn-dark col-6 mb-3" id="btnluusua">Lưu</button>
+            <span class="col-3"></span>
+        </div>
+    </div>
+    <div class="container" id="footer">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                <h5>Thông tin nhóm</h5>
+                <div style="font-size: 15px;">
+                    <p>Thành viên 1:</p>
+                    <p> Tên: Nguyễn Thái Nguyên</p>
+                    <p> MSSV: 19480511</p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                <h5>Thông tin liên hệ</h5>
+                <div style="font-size: 15px;">
+                    <p>Di động: 0339875293</p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                <h5>Giảng viên hướng dẫn</h5>
+                <div style="font-size: 15px;">
+                    <p>Đặng Thị Thu Hà</p>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center" id="ff">
+            <div class="col-12">
+                <p></p>
+                <p>Trường Đại học Công Nghiệp TP.HCM</p>
+                <p>Môn học: Hệ thống và công nghệ Web</p>
+                <p>Lớp HP: DHHTTT15C - 420300214510</p>
+                <p>Designed by: Nguyễn Thái Nguyên</p>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</body>
+</html>

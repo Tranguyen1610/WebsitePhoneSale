@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm kiếm</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <script>
+         function format(x) {
+            if(isNaN(x))return "";
+        
+            n= x.toString().split('.');
+            return n[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")+(n.length>1?"."+n[1]:"");
+        }
+        var tktk=localStorage.getItem('tukhoa');
+        var ds=JSON.parse(localStorage.getItem('dsdt'));
+        $(document).ready(function () {
+            var count=JSON.parse(localStorage.getItem('sltk'));
+            $("#tkh").html("\""+tktk+"\"");
+            for (i = 0; i<ds.length; i++) {
+                var loai = ds[i].loai;
+                var chon = ds[i].chon;
+                var link = ds[i].link;
+                var img = ds[i].imga;
+                var ten = ds[i].ten;
+                var gia = ds[i].gia;
+                var giacu = ds[i].giacu;
+                var mh = ds[i].manhinh;
+                var chip = ds[i].chip;
+                var ram = ds[i].ram;
+                var nb=ds[i].nb;
+                var them =
+                "<div class='col-xs-12 col-sm-12 col-md-6 col-lg-3 mt-3'><div id='dt' class='border' style='width:auto; height: auto;'><a href='" + link + "' id='tendt'><div style='width: 170px;height: 250px;'>" + img + "</div><h6>" + ten + "</h6></a><span style='color:black;'>" + format(gia) + "<sup>₫</sup></span><p id='giacu'>" + format(giacu) + "<sup>₫</sup></p><ul style='margin-left:25px ; font-size: 13px;'><li>" + mh + "</li><li>" + chip + "</li><li>" + ram + "</li></ul></div></div>";
+                if (chon == true && ten.toUpperCase().indexOf(tktk.toUpperCase())>=0)
+                {
+                    $("#HT").append(them);
+                    count++;
+                    localStorage.setItem('sltk',JSON.stringify(count));
+                }
+            }
+            if(JSON.parse(localStorage.getItem('sltk'))==0)  
+                $("#kqtk").html("Không tìm thấy!");
+            var ttdn=localStorage.getItem('ttdn');
+            if( ttdn=='true')
+            {
+                var tkdnht=JSON.parse(localStorage.getItem('tkdnht'));
+                var t=tkdnht.hoten;
+                $("#textDN").html(t);
+            }
+            $("#login").click(function(){
+                if(ttdn=='true')
+                    window.location.href="../html/thongtindangnhap.html";
+                else
+                    window.location.href="../html/dangnhap.html";
+            })
+            $("#txtsearch").val(tktk);
+            $("#btnTK").click(function(){
+                var tk=$("#txtsearch").val();
+                if(tk=="")
+                    alert("Bạn chưa nhập từ khóa tìm kiếm");
+                else
+                {
+                    localStorage.setItem('tukhoa',tk);
+                    localStorage.setItem('sltk',JSON.stringify(0));
+                    window.location.href="../html/timkiem.html";
+                }
+            })
+            var gh=JSON.parse(localStorage.getItem('giohang'));
+            if(gh.length>0)
+                $("#slgh").html('&nbsp;&nbsp;'+gh.length+'&nbsp;&nbsp;');
+        })
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row" id="td">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <div>
+                    <a href="../html/homepage.html" style="text-decoration: none;color: #ffffff;">
+                        <img src="../image/NTN.png" alt="logo" style="width: 250px;">
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 text-center">
+                <div>
+                    <div>
+                        <a href="tel:0339875293" id="aa">
+                            <img src="../image/dt.png" alt="icon" style="width: 20px;height: 20px;">
+                            <span style="font-size: 15px;">0339875293</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="https://www.facebook.com/Tranguyen0604" target="_blank" id="aa">
+                            <img src="../image/fb.png" alt="fb" style="width: 20px;height: 20px;">
+                            <span>Facebook&nbsp;&nbsp;&nbsp;</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="search">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 text-center">
+                <a href="../html/homepage.html">
+                    <img src="../image/logo.PNG" alt="logo" style="width:170px;height: 70px; margin-left:0px;">
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 mt-3">
+                <input type="text" name="" id="txtsearch" class="form-control" placeholder="Bạn cần tìm?" style="width: 100%;">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 mt-3 text-center ">
+                <button type="button" class="btn btn-dark"  id="btnTK">Tìm kiếm</button>
+            </div> 
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2 ">
+                <a href="../html/giohang.html"id="aa">
+                    <div  id="cart">
+                            <div class="text-center" id="txt">
+                                <img src="../image/shopping-cart.png" alt="icon" style="width: 20px;height: 20px;">
+                                <div id="slgh">
+                                    <span></span>
+                                </div>
+                                <span>Giỏ hàng</span>
+                            </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 ">
+                <a href="##" id="aa">
+                    <div id="login">
+                        <div class="text-center" id="txt">
+                            <img src="../image/user.png" alt="user" style="width: 20px;height: 20px;">
+                            <span id="textDN">Đăng nhập</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="nav">
+        <div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 text-center">
+                    <a href="../html/iphone.html">
+                        <img src="../image/iPhone-(Apple).jpg" alt="Apple" id="imgtele">
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 text-center">
+                    <a href="../html/samsung.html">
+                        <img src="../image/Samsung.jpg" alt="samsung" id="imgtele">
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 text-center">
+                    <a href="../html/xiaomi.html">
+                        <img src="../image/XIAOMI.jpg" alt="xiaomi" id="imgtele">
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 text-center">
+                    <a href="../html/oppo.html">
+                        <img src="../image/OPPO.jpg" alt="oppo" id="imgtele">
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 text-center">
+                    <a href="../html/vivo.html">
+                        <img src="../image/Vivo.jpg" alt="vivo" id="imgtele">
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 text-center">
+                    <a href="../html/tatcadt.html">
+                        <img src="../image/all.png" alt="nokia" id="imgtele">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="banner">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                    <a href="../html/VivoV21.html">
+                        <img src="../image/banner1.jpg" class="d-block w-100" alt="banner" id="imgbanner">
+                    </a>
+              </div>
+              <div class="carousel-item">
+                <a href="../html/SamsungZFold2.html">
+                    <img src="../image/banner2.jpg" class="d-block w-100" alt="banner" id="imgbanner">
+                </a>
+              </div>
+              <div class="carousel-item">
+                    <a href="../html/XiaomiRN10P.html">
+                        <img src="../image/banner3.jpg" class="d-block w-100" alt="banner" id="imgbanner">
+                    </a>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <div class="container" id="content">
+        <h3 id="dtnb">Tìm kiếm</h3>
+        <div class="text-danger">
+            <span>Kết quả tìm kiếm cho từ khóa: </span>
+            <span id="tkh"></span>
+        </div>
+        <p id="kqtk" class="text-danger"></p>
+        <div class="row" id="HT">
+            
+        </div>
+    </div>
+    <div class="container" id="footer">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                <h5>Thông tin nhóm</h5>
+                <div style="font-size: 15px;">
+                    <p>Thành viên 1:</p>
+                    <p> Tên: Nguyễn Thái Nguyên</p>
+                    <p> MSSV: 19480511</p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                <h5>Thông tin liên hệ</h5>
+                <div style="font-size: 15px;">
+                    <p>Di động: 0339875293</p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                <h5>Giảng viên hướng dẫn</h5>
+                <div style="font-size: 15px;">
+                    <p>Đặng Thị Thu Hà</p>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center" id="ff">
+            <div class="col-12">
+                <p></p>
+                <p>Trường Đại học Công Nghiệp TP.HCM</p>
+                <p>Môn học: Hệ thống và công nghệ Web</p>
+                <p>Lớp HP: DHHTTT15C - 420300214510</p>
+                <p>Designed by: Nguyễn Thái Nguyên</p>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+</body>
+
+</html>

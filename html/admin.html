@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản trị trang web</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+    #QT{
+       background-color:#333333; 
+    }
+    #main{
+        border-radius: 10px;
+        background-color: #ffffff;
+        width: 90%;
+        height: auto;
+    }
+    #btnsua{
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    </style>
+    <script>
+        var ds=JSON.parse(localStorage.getItem('dsdt'));
+        function layVT(tenl)
+        {
+            for(i=0;i<ds.length;i++)
+            {
+                if(ds[i].ten==tenl)
+                {
+                    return i;
+                    break;
+                }
+            }
+        }
+        $(document).ready(function(){
+            var ds=JSON.parse(localStorage.getItem('dsdt'));
+            for (i = 0; i<ds.length; i++) {
+                var ten = ds[i].ten;
+                var dst="<div class='border row text-center'><input class='col-4' type='radio' name='chon' id='chon' style='margin-top:10px;'value='"+ten+"'><span class='col-8' style='padding:3px;'>"+ten+"</span></div>";
+                $("#DSS").append(dst);
+            }
+            $("#btnsua").click(function(){
+                var t=$("#chon:checked").val()
+                if(t!=null)
+                {
+                    localStorage.setItem('dtsua',JSON.stringify(layVT(t)));
+                    window.location.href="../html/admin2.html";
+                }
+            })
+            $("#btnhome").click(function(){
+                window.location.href="../html/homepage.html";
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="container-fluid text-center" id="QT">
+        <h3 style="padding: 10px;">QUẢN TRỊ TRANG WEB</h3>
+    </div>
+    <div class="container-fluid" id="main">
+        <h3 id="dtnb">Danh sách điện thoại</h3>
+        <br>
+        <button type="button" class="btn btn-dark col-6 mb-3" id="btnhome" style="width: 100px;">Trang chủ</button>
+        <div id="DSS" style="color: black; font-weight: 600; font-size: 18px;" >
+            <!--  <div class="border row text-center">
+                <input class="col-4" type="radio" name="chon" id="chon" value="Tên điện thoại" style="margin-top:5px;">
+                <span  class="col-8" style="padding:3px;">Tên điện thoạiTên điện thoại</span>
+            </div> -->
+        </div>
+        <div class="row text-center">
+            <span class="col-3"></span>
+            <button type="button" class="btn btn-dark col-6" id="btnsua">Sửa thông tin</button>
+            <span class="col-3"></span>
+        </div>
+    </div>
+    <div class="container" id="footer">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                <h5>Thông tin nhóm</h5>
+                <div style="font-size: 15px;">
+                    <p>Thành viên 1:</p>
+                    <p> Tên: Nguyễn Thái Nguyên</p>
+                    <p> MSSV: 19480511</p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                <h5>Thông tin liên hệ</h5>
+                <div style="font-size: 15px;">
+                    <p>Di động: 0339875293</p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                <h5>Giảng viên hướng dẫn</h5>
+                <div style="font-size: 15px;">
+                    <p>Đặng Thị Thu Hà</p>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center" id="ff">
+            <div class="col-12">
+                <p></p>
+                <p>Trường Đại học Công Nghiệp TP.HCM</p>
+                <p>Môn học: Hệ thống và công nghệ Web</p>
+                <p>Lớp HP: DHHTTT15C - 420300214510</p>
+                <p>Designed by: Nguyễn Thái Nguyên</p>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</body>
+</html>

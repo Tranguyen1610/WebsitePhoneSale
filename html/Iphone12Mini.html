@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 12 mini 256GB</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <script>
+        var ds=JSON.parse(localStorage.getItem('dsdt'));
+        function format(x) {
+            if(isNaN(x))return "";
+        
+            n= x.toString().split('.');
+            return n[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")+(n.length>1?"."+n[1]:"");
+        }
+        function LayMh()
+        {
+            for(i=0;i<ds.length;i++)
+                if(ds[i].ten=='iPhone 12 mini 256GB')
+                {
+                    return i;
+                    break;
+                }
+        }
+        $(document).ready(function () {   
+            var ttdn=localStorage.getItem('ttdn');
+            var mh={
+                    ten:'iPhone 12 mini 256GB',
+                    gia:ds[LayMh()].gia,
+                    giacu:ds[LayMh()].giacu,
+                    hinh:'<img class="col-xs-6 col-sm-6 col-md-3 col-lg-3" src="../image/iphone/iphone-23-mini-bia.jpg" alt="dt" style="max-width: 100px;">',
+                }
+            if( ttdn=='true')
+            {
+                var tkdnht=JSON.parse(localStorage.getItem('tkdnht'));
+                var t=tkdnht.hoten;
+                $("#textDN").html(t);
+            }
+            $("#login").click(function(){
+                if(ttdn=='true')
+                    window.location.href="../html/thongtindangnhap.html";
+                else
+                    window.location.href="../html/dangnhap.html";
+            })
+            $("#btnTK").click(function(){
+                var tk=$("#txtsearch").val();
+                if(tk=="")
+                    alert("Bạn chưa nhập từ khóa tìm kiếm");
+                else
+                {
+                    localStorage.setItem('tukhoa',tk);
+                    localStorage.setItem('sltk',JSON.stringify(0));
+                    window.location.href="../html/timkiem.html";
+                }
+            })
+            
+            $("#btnTGH").click(function(){
+                var gh=JSON.parse(localStorage.getItem('giohang'));
+                
+                gh.push(mh);
+                localStorage.setItem('giohang',JSON.stringify(gh));
+                alert("Thêm vào giỏi hàng thành công");
+                var gh=JSON.parse(localStorage.getItem('giohang'));
+                if(gh.length>0)
+                    $("#slgh").html('&nbsp;&nbsp;'+gh.length+'&nbsp;&nbsp;');
+            })
+            var gh=JSON.parse(localStorage.getItem('giohang'));
+            if(gh.length>0)
+                $("#slgh").html('&nbsp;&nbsp;'+gh.length+'&nbsp;&nbsp;');
+            $("#gia").html(format(mh.gia)+"<sup>₫</sup>");
+            $("#giacu").html(format(mh.giacu)+"<sup>₫</sup>");
+        })
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row" id="td">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <div>
+                    <a href="../html/homepage.html" style="text-decoration: none;color: #ffffff;">
+                        <img src="../image/NTN.png" alt="logo" style="width: 250px;">
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 text-center">
+                <div>
+                    <div>
+                        <a href="tel:0339875293" id="aa">
+                            <img src="../image/dt.png" alt="icon" style="width: 20px;height: 20px;">
+                            <span style="font-size: 15px;">0339875293</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="https://www.facebook.com/Tranguyen0604" target="_blank" id="aa">
+                            <img src="../image/fb.png" alt="fb" style="width: 20px;height: 20px;">
+                            <span>Facebook&nbsp;&nbsp;&nbsp;</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="search">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 text-center">
+                <a href="../html/homepage.html">
+                    <img src="../image/logo.PNG" alt="logo" style="width:170px;height: 70px; margin-left:0px;">
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 mt-3">
+                <input type="text" name="" id="txtsearch" class="form-control" placeholder="Bạn cần tìm?" style="width: 100%;">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 mt-3 text-center ">
+                <button type="button" class="btn btn-dark"  id="btnTK">Tìm kiếm</button>
+            </div> 
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2 ">
+                <a href="../html/giohang.html"id="aa">
+                    <div  id="cart">
+                            <div class="text-center" id="txt">
+                                <img src="../image/shopping-cart.png" alt="icon" style="width: 20px;height: 20px;">
+                                <div id="slgh">
+                                    <span></span>
+                                </div>
+                                <span>Giỏ hàng</span>
+                            </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 ">
+                <a href="##" id="aa">
+                    <div id="login">
+                        <div class="text-center" id="txt">
+                            <img src="../image/user.png" alt="user" style="width: 20px;height: 20px;">
+                            <span id="textDN">Đăng nhập</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="nav">
+        <div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 text-center">
+                    <a href="../html/iphone.html">
+                        <img src="../image/iPhone-(Apple).jpg" alt="Apple" id="imgtele">
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 text-center">
+                    <a href="../html/samsung.html">
+                        <img src="../image/Samsung.jpg" alt="samsung" id="imgtele">
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 text-center">
+                    <a href="../html/xiaomi.html">
+                        <img src="../image/XIAOMI.jpg" alt="xiaomi" id="imgtele">
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 text-center">
+                    <a href="../html/oppo.html">
+                        <img src="../image/OPPO.jpg" alt="oppo" id="imgtele">
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 text-center">
+                    <a href="../html/vivo.html">
+                        <img src="../image/Vivo.jpg" alt="vivo" id="imgtele">
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 text-center">
+                    <a href="../html/tatcadt.html">
+                        <img src="../image/all.png" alt="nokia" id="imgtele">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="content">
+        <h4>Điện thoại iPhone 12 mini 256GB</h4>
+        <div class="row">
+            <div class="col-sx-12 col-sm-12 col-md-12 col-lg-7">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="../image/iphone/iphone-12-mini-256gb-b1.jpg" class="d-block w-100" alt="ip">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="../image/iphone/iphone-12-mini-256gb-b2.jpg" class="d-block w-100" alt="ip">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="..//image/iphone/iphone-12-mini-256gb-b3.jpg" class="d-block w-100" alt="ip">
+                      </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
+                <div style="margin-top: 20px;">
+                    <h3 class="text-danger" style="display: inline;" id="gia"></h3>
+                    <span>Giá niêm yết:</span>
+                    <span style="text-decoration:line-through;" id="giacu"></span>
+                </div>
+                  <button type="button" class="btn btn-dark" style="width: 100%; margin-top: 30px;" id="btnTGH">Thêm vào giỏi hàng</button>
+            </div>
+            <div class="col-sx-12 col-sm-12 col-md-12 col-lg-5 border" style="border-radius: 5px;">
+                <h5>Cấu hình điện thoại iPhone 12 mini 256GB</h5>
+                <table class="table table-striped">
+                    <tr>
+                        <td>Màn hình:</td>
+                        <td>OLED 5.4" Super Retina XDR</td>
+                    </tr>
+                    <tr>
+                        <td>Hệ điều hành:</td>
+                        <td>IOS 14</td>
+                    </tr>
+                    <tr>
+                        <td>Camera sau:</td>
+                        <td>2 camera 12 MP</td>
+                    </tr>
+                    <tr>
+                        <td>Camera trước:</td>
+                        <td>12 MP</td>
+                    </tr>
+                    <tr>
+                        <td>Chip:</td>
+                        <td>Apple A14 Bionic</td>
+                    </tr>
+                    <tr>
+                        <td>RAM:</td>
+                        <td>4 GB</td>
+                    </tr>
+                    <tr>
+                        <td>Bộ nhớ trong:</td>
+                        <td>256 GB</td>
+                    </tr>
+                    <tr>
+                        <td>SIM:</td>
+                        <td>1 Nano SIM & 1 eSIM Hỗ trợ 5G</td>
+                    </tr>
+                    <tr>
+                        <td>Pin, Sạc:</td>
+                        <td>2227 mAh 20 W</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sx-12 col-sm-12 col-md-12 col-lg-7 ">
+                <img src="../image/iphone/iphone-12-mini-256gb-note-2.jpg" alt="note" style="max-width: 100%; height: auto;">
+                <h5>Bài viết đáng giá</h5>
+                <h6>Apple giới thiệu đến người dùng 4 phiên bản iPhone mới trong sự kiện Hi, Speed! ngày 14/10, trong đó có iPhone 12 mini 256 GB, đây là sản phẩm hỗ trợ 5G có thiết kế nhỏ nhất, nhẹ nhất, mỏng nhất trên thế giới cho đến thời điểm hiện tại (10/2020).</h6>
+                <h6>Thiết kế cao cấp và cứng cáp</h6>
+                <p style="font-size: 14px;">Sau ba năm sử dụng thiết kế của iPhone X thì năm nay Apple đã thay đổi một số đặc điểm của toàn bộ dòng iPhone 12 series của mình.</p>
+                <img src="../image/iphone/iphone-12-mini-256gb-1.jpg" alt="iphone" style="max-width: 100%;height: auto;">
+                <h6>Camera kép thách thức bóng tối, hỗ trợ quay video chuẩn Dolby Vision</h6>
+                <p style="font-size: 14px;">iPhone 12 Mini sở hữu cụm camera góc rộng và camera góc siêu rộng 120 độ với cùng độ phân giải 12 MP.Với khẩu độ f/1.6 trên camera chính giúp máy có thể thu nhiều ánh sáng hơn 27% so với thế hệ trước. Vì vậy, cho dù bạn chụp ảnh vào ban ngày hay theo ban đêm thì bạn cũng sẽ nhận được mức độ chi tiết và màu sắc mà trước đây không thể có.</p>
+                <img src="../image/iphone/iphone-12-mini-256gb-2.jpg" alt="iphone" style="max-width: 100%;height: auto;">
+                <p style="font-size: 14px;">iPhone 12 Mini sẽ không có tai nghe và củ sạc đi kèm trong hộp. Vì môi trường, Apple đang tìm cách cắt giảm rác thải điện tử trên các thiết bị của hãng, bạn có thể tham khảo một số phụ kiện Apple kinh doanh tại Thế giới di động nếu có nhu cầu.</p>
+            </div>
+            <div class="col-sx-12 col-sm-12 col-md-12 col-lg-5"style="max-width: 100%;height: auto;"></div>
+        </div>
+    </div>
+    <div class="container" id="footer">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                <h5>Thông tin nhóm</h5>
+                <div style="font-size: 15px;">
+                    <p>Thành viên 1:</p>
+                    <p> Tên: Nguyễn Thái Nguyên</p>
+                    <p> MSSV: 19480511</p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                <h5>Thông tin liên hệ</h5>
+                <div style="font-size: 15px;">
+                    <p>Di động: 0339875293</p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                <h5>Giảng viên hướng dẫn</h5>
+                <div style="font-size: 15px;">
+                    <p>Đặng Thị Thu Hà</p>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center" id="ff">
+            <div class="col-12">
+                <p></p>
+                <p>Trường Đại học Công Nghiệp TP.HCM</p>
+                <p>Môn học: Hệ thống và công nghệ Web</p>
+                <p>Lớp HP: DHHTTT15C - 420300214510</p>
+                <p>Designed by: Nguyễn Thái Nguyên</p>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+</body>
+
+</html>
